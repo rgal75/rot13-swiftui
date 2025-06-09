@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		23BAFBA22DECBCF70019D417 /* ViewInspector in Frameworks */ = {isa = PBXBuildFile; productRef = 23BAFBA12DECBCF70019D417 /* ViewInspector */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		23BAFB652DECBA3D0019D417 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		23B800D32DF75CC1005EFADA /* Rot13.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Rot13.xctestplan; sourceTree = "<group>"; };
 		23BAFB562DECBA3C0019D417 /* Rot13.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rot13.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23BAFB642DECBA3D0019D417 /* Rot13Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Rot13Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		23BAFB6E2DECBA3D0019D417 /* Rot13UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Rot13UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23BAFBA22DECBCF70019D417 /* ViewInspector in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +81,7 @@
 		23BAFB4D2DECBA3C0019D417 = {
 			isa = PBXGroup;
 			children = (
+				23B800D32DF75CC1005EFADA /* Rot13.xctestplan */,
 				23BAFB582DECBA3C0019D417 /* Rot13 */,
 				23BAFB672DECBA3D0019D417 /* Rot13Tests */,
 				23BAFB712DECBA3D0019D417 /* Rot13UITests */,
@@ -135,6 +142,7 @@
 			);
 			name = Rot13Tests;
 			packageProductDependencies = (
+				23BAFBA12DECBCF70019D417 /* ViewInspector */,
 			);
 			productName = Rot13Tests;
 			productReference = 23BAFB642DECBA3D0019D417 /* Rot13Tests.xctest */;
@@ -195,6 +203,9 @@
 			);
 			mainGroup = 23BAFB4D2DECBA3C0019D417;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				23BAFBA02DECBCF70019D417 /* XCRemoteSwiftPackageReference "ViewInspector" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 23BAFB572DECBA3C0019D417 /* Products */;
 			projectDirPath = "";
@@ -583,6 +594,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		23BAFBA02DECBCF70019D417 /* XCRemoteSwiftPackageReference "ViewInspector" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nalexn/ViewInspector";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		23BAFBA12DECBCF70019D417 /* ViewInspector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 23BAFBA02DECBCF70019D417 /* XCRemoteSwiftPackageReference "ViewInspector" */;
+			productName = ViewInspector;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 23BAFB4E2DECBA3C0019D417 /* Project object */;
 }
