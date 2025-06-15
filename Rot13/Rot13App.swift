@@ -12,6 +12,7 @@ struct Rot13App: App {
     var body: some Scene {
         WindowGroup {
             CipherView()
+                .environmentObject(CipherViewModel.create())
         }
     }
 }

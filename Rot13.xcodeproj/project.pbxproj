@@ -18,20 +18,12 @@
 			remoteGlobalIDString = 23BAFB552DECBA3C0019D417;
 			remoteInfo = Rot13;
 		};
-		23BAFB6F2DECBA3D0019D417 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 23BAFB4E2DECBA3C0019D417 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 23BAFB552DECBA3C0019D417;
-			remoteInfo = Rot13;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		23B800D32DF75CC1005EFADA /* Rot13.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Rot13.xctestplan; sourceTree = "<group>"; };
 		23BAFB562DECBA3C0019D417 /* Rot13.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rot13.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23BAFB642DECBA3D0019D417 /* Rot13Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Rot13Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		23BAFB6E2DECBA3D0019D417 /* Rot13UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Rot13UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		23C702E82DFF072400406395 /* Rot13.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Rot13.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -43,11 +35,6 @@
 		23BAFB672DECBA3D0019D417 /* Rot13Tests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Rot13Tests;
-			sourceTree = "<group>";
-		};
-		23BAFB712DECBA3D0019D417 /* Rot13UITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Rot13UITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -68,23 +55,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		23BAFB6B2DECBA3D0019D417 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		23BAFB4D2DECBA3C0019D417 = {
 			isa = PBXGroup;
 			children = (
-				23B800D32DF75CC1005EFADA /* Rot13.xctestplan */,
+				23C702E82DFF072400406395 /* Rot13.xctestplan */,
 				23BAFB582DECBA3C0019D417 /* Rot13 */,
 				23BAFB672DECBA3D0019D417 /* Rot13Tests */,
-				23BAFB712DECBA3D0019D417 /* Rot13UITests */,
 				23BAFB572DECBA3C0019D417 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -94,7 +73,6 @@
 			children = (
 				23BAFB562DECBA3C0019D417 /* Rot13.app */,
 				23BAFB642DECBA3D0019D417 /* Rot13Tests.xctest */,
-				23BAFB6E2DECBA3D0019D417 /* Rot13UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -148,29 +126,6 @@
 			productReference = 23BAFB642DECBA3D0019D417 /* Rot13Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		23BAFB6D2DECBA3D0019D417 /* Rot13UITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 23BAFB7E2DECBA3D0019D417 /* Build configuration list for PBXNativeTarget "Rot13UITests" */;
-			buildPhases = (
-				23BAFB6A2DECBA3D0019D417 /* Sources */,
-				23BAFB6B2DECBA3D0019D417 /* Frameworks */,
-				23BAFB6C2DECBA3D0019D417 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				23BAFB702DECBA3D0019D417 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				23BAFB712DECBA3D0019D417 /* Rot13UITests */,
-			);
-			name = Rot13UITests;
-			packageProductDependencies = (
-			);
-			productName = Rot13UITests;
-			productReference = 23BAFB6E2DECBA3D0019D417 /* Rot13UITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -185,10 +140,6 @@
 						CreatedOnToolsVersion = 16.4;
 					};
 					23BAFB632DECBA3D0019D417 = {
-						CreatedOnToolsVersion = 16.4;
-						TestTargetID = 23BAFB552DECBA3C0019D417;
-					};
-					23BAFB6D2DECBA3D0019D417 = {
 						CreatedOnToolsVersion = 16.4;
 						TestTargetID = 23BAFB552DECBA3C0019D417;
 					};
@@ -213,7 +164,6 @@
 			targets = (
 				23BAFB552DECBA3C0019D417 /* Rot13 */,
 				23BAFB632DECBA3D0019D417 /* Rot13Tests */,
-				23BAFB6D2DECBA3D0019D417 /* Rot13UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -227,13 +177,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		23BAFB622DECBA3D0019D417 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		23BAFB6C2DECBA3D0019D417 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -257,13 +200,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		23BAFB6A2DECBA3D0019D417 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -271,11 +207,6 @@
 			isa = PBXTargetDependency;
 			target = 23BAFB552DECBA3C0019D417 /* Rot13 */;
 			targetProxy = 23BAFB652DECBA3D0019D417 /* PBXContainerItemProxy */;
-		};
-		23BAFB702DECBA3D0019D417 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 23BAFB552DECBA3C0019D417 /* Rot13 */;
-			targetProxy = 23BAFB6F2DECBA3D0019D417 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -512,48 +443,6 @@
 			};
 			name = Release;
 		};
-		23BAFB7F2DECBA3D0019D417 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
-				MACOSX_DEPLOYMENT_TARGET = 15.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = hu.galiasys.Rot13UITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_TARGET_NAME = Rot13;
-				XROS_DEPLOYMENT_TARGET = 2.5;
-			};
-			name = Debug;
-		};
-		23BAFB802DECBA3D0019D417 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
-				MACOSX_DEPLOYMENT_TARGET = 15.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = hu.galiasys.Rot13UITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
-				TEST_TARGET_NAME = Rot13;
-				XROS_DEPLOYMENT_TARGET = 2.5;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -580,15 +469,6 @@
 			buildConfigurations = (
 				23BAFB7C2DECBA3D0019D417 /* Debug */,
 				23BAFB7D2DECBA3D0019D417 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		23BAFB7E2DECBA3D0019D417 /* Build configuration list for PBXNativeTarget "Rot13UITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				23BAFB7F2DECBA3D0019D417 /* Debug */,
-				23BAFB802DECBA3D0019D417 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

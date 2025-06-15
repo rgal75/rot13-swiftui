@@ -10,7 +10,10 @@ import Combine
 
 struct CipherView: View {
     @State private var plainText = ""
-    @StateObject private var viewModel = CipherViewModel()
+    @EnvironmentObject var viewModel: CipherViewModel
+    @State private var showError = false
+    @State private var errorMessage = ""
+    @State private var isEncrypting = false
     internal let inspection = Inspection<Self>(
         
     )
@@ -27,7 +30,19 @@ struct CipherView: View {
                 .textInputAutocapitalization(.never)
                 .disableAutocorrection(true)
             Button("Encrypt") {
-                viewModel.encrypt(plainText: plainText)
+                Task {
+                    isEncrypting = true
+                    do {
+                        try await viewModel.encrypt(plainText: plainText)
+                    } catch {
+                        errorMessage = error.localizedDescription
+                        showError = true
+                    }
+                    isEncrypting = false
+                }
+            }
+            if isEncrypting {
+                ProgressView("Encrypting...")
             }
             TextField("Encrypted Text", text: $viewModel.encryptedText, prompt: Text("Encrypted Text"), axis: .vertical)
                 .frame(maxHeight: .infinity, alignment: .top)
@@ -41,9 +56,14 @@ struct CipherView: View {
         }
         .padding()
         .onReceive(inspection.notice) { self.inspection.visit(self, $0) }
+        .alert("Encryption Failed", isPresented: $showError) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text(errorMessage)
+        }
     }
 }
 
 #Preview {
-    CipherView()
+    CipherView().environmentObject(CipherViewModel.createNull(configurableResponse: .success("TEST")))
 }

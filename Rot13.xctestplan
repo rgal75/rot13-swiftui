@@ -17,19 +17,10 @@
   },
   "testTargets" : [
     {
-      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:Rot13.xcodeproj",
         "identifier" : "23BAFB632DECBA3D0019D417",
         "name" : "Rot13Tests"
-      }
-    },
-    {
-      "parallelizable" : true,
-      "target" : {
-        "containerPath" : "container:Rot13.xcodeproj",
-        "identifier" : "23BAFB6D2DECBA3D0019D417",
-        "name" : "Rot13UITests"
       }
     }
   ],

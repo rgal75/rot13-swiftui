@@ -15,7 +15,7 @@ struct CipherViewTests {
 
     @Test("CipherView shows a text input for the plain text, a button to start the encryption and the text output for the encrypted text")
     func testUIComponents() async throws {
-        let cipherView = CipherView()
+        let cipherView = CipherView().environmentObject(CipherViewModel.createNull())
         let inspected = try cipherView.inspect()
         // Check for the plain text input field
         _ = try inspected.find(ViewType.TextField.self) { view in
@@ -33,10 +33,12 @@ struct CipherViewTests {
 
     @Test("Given some plain text, when the user taps the Encrypt button, the encrypted text is shown")
     func testEncryption() async throws {
-        let sut = CipherView()
+        let cipherView = CipherView()
+        let inspection = cipherView.inspection
+        let sut = cipherView.environmentObject(CipherViewModel.createNull())
         ViewHosting.host(view: sut)
         defer { ViewHosting.expel() }
-        try await sut.inspection.inspect { inspectableSUT in
+        try await inspection.inspect { inspectableSUT in
             // Set the plain text
             let plainTextField = try inspectableSUT.find(ViewType.TextField.self) { view in
                 try view.prompt().string() == "Plain Text"
