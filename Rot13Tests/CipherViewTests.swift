@@ -31,32 +31,28 @@ struct CipherViewTests {
         }
     }
 
-    @Test("Given some plain text, when the user taps the Encrypt button, the encrypted text is shown")
+    @Test("Given some plain text, when the user taps the Encrypt button, on sucessful encryption, the encrypted text is shown")
     func testEncryption() async throws {
-        let cipherView = CipherView()
-        let inspection = cipherView.inspection
-        let sut = cipherView.environmentObject(CipherViewModel.createNull())
-        ViewHosting.host(view: sut)
+        let sut = CipherView()
+        ViewHosting.host(
+            view: sut.environmentObject(
+                CipherViewModel.createNull(configurableResponse: .success("My encrypted text"))
+            )
+        )
         defer { ViewHosting.expel() }
-        try await inspection.inspect { inspectableSUT in
-            // Set the plain text
-            let plainTextField = try inspectableSUT.find(ViewType.TextField.self) { view in
-                try view.prompt().string() == "Plain Text"
-            }
-            try plainTextField.setInput("Hello World!")
-            #expect(try plainTextField.input() == "Hello World!")
-            // Tap the Encrypt button
-            let encryptButton = try inspectableSUT.find(ViewType.Button.self) { view in
-                try view.labelView().text().string() == "Encrypt"
-            }
+        try await sut.inspection.inspect { inspectableSUT in
+            // Given
+            let plainTextField = try inspectableSUT.find(viewWithId: "text_field.plainText").textField()
+            try plainTextField.setInput("My plain text")
+            #expect(try plainTextField.input() == "My plain text")
+            // When
+            let encryptButton = try inspectableSUT.find(viewWithId: "button.encrypt").button()
             try encryptButton.tap()
-            // Check the encrypted text
-            let encryptedTextField = try inspectableSUT.find(ViewType.TextField.self) { view in
-                try view.prompt().string() == "Encrypted Text"
-            }
+            try await Task.sleep(for: .milliseconds(100))
+            // Then
+            let encryptedTextField = try inspectableSUT.find(viewWithId: "text_field.cipherText").textField()
             let encryptedText = try encryptedTextField.input()
-            // ROT13 of "Hello World!" is "Uryyb Jbeyq!"
-            #expect(encryptedText == "Uryyb Jbeyq!")
+            #expect(encryptedText == "My encrypted text")
         }
     }
 }

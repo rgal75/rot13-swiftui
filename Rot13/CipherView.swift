@@ -20,6 +20,7 @@ struct CipherView: View {
     var body: some View {
         VStack(spacing: 20) {
             TextField("Plain Text", text: $plainText, prompt: Text("Plain Text"), axis: .vertical)
+                .id("text_field.plainText")
                 .frame(maxHeight: .infinity, alignment: .top)
                 .padding(8)
                 .background(
@@ -29,22 +30,25 @@ struct CipherView: View {
                 .multilineTextAlignment(.leading)
                 .textInputAutocapitalization(.never)
                 .disableAutocorrection(true)
-            Button("Encrypt") {
-                Task {
-                    isEncrypting = true
-                    do {
-                        try await viewModel.encrypt(plainText: plainText)
-                    } catch {
-                        errorMessage = error.localizedDescription
-                        showError = true
-                    }
-                    isEncrypting = false
-                }
-            }
             if isEncrypting {
-                ProgressView("Encrypting...")
+                ProgressView()
+            } else {
+                Button("Encrypt") {
+                    Task {
+                        isEncrypting = true
+                        do {
+                            try await viewModel.encrypt(plainText: plainText)
+                        } catch {
+                            errorMessage = error.localizedDescription
+                            showError = true
+                        }
+                        isEncrypting = false
+                    }
+                }
+                .id("button.encrypt")
             }
             TextField("Encrypted Text", text: $viewModel.encryptedText, prompt: Text("Encrypted Text"), axis: .vertical)
+                .id("text_field.cipherText")
                 .frame(maxHeight: .infinity, alignment: .top)
                 .padding(8)
                 .background(
@@ -55,12 +59,12 @@ struct CipherView: View {
                 .disabled(true)
         }
         .padding()
-        .onReceive(inspection.notice) { self.inspection.visit(self, $0) }
         .alert("Encryption Failed", isPresented: $showError) {
             Button("OK", role: .cancel) { }
         } message: {
             Text(errorMessage)
         }
+        .onReceive(inspection.notice) { self.inspection.visit(self, $0) }
     }
 }
 

@@ -73,7 +73,7 @@ class CipherService: CipherServiceProtocol {
         switch stubResponse {
         case .success(let text):
             let data = try! JSONSerialization.data(withJSONObject: ["transformed": text])
-            stubServiceResponse = .success((data, URLResponse()))
+            stubServiceResponse = .success((data, HTTPURLResponse(url: URL(string: "http://localhost:8081/rot13/transform")!, statusCode: 200, httpVersion: nil, headerFields: nil)!))
         case .failure(let error):
             stubServiceResponse = .failure(error)
         }

@@ -11,8 +11,14 @@ import SwiftUI
 struct Rot13App: App {
     var body: some Scene {
         WindowGroup {
-            CipherView()
-                .environmentObject(CipherViewModel.create())
+            if isProduction {
+                CipherView()
+                    .environmentObject(CipherViewModel.create())
+            }
         }
+    }
+    
+    private var isProduction: Bool {
+        NSClassFromString("XCTestCase") == nil
     }
 }
