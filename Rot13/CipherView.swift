@@ -59,7 +59,7 @@ struct CipherView: View {
                 .disabled(true)
         }
         .padding()
-        .alert("Encryption Failed", isPresented: $showError) {
+        .alert("Encryption failed", isPresented: $showError) {
             Button("OK", role: .cancel) { }
         } message: {
             Text(errorMessage)

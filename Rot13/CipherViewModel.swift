@@ -2,7 +2,7 @@ import Foundation
 import Combine
 
 class CipherViewModel: ObservableObject {
-    @Published var encryptedText: String = ""
+    @MainActor @Published var encryptedText: String = ""
     
     private let cipherService: CipherService
     
@@ -13,11 +13,13 @@ class CipherViewModel: ObservableObject {
     static func create() -> CipherViewModel {
         return CipherViewModel(cipherService: CipherService.create())
     }
+    
     static func createNull(configurableResponse: ConfigurableResponse<String, Error> = .success("!!!")) -> CipherViewModel {
         let cipherService = CipherService.createNull(stubResponse: configurableResponse)
         return CipherViewModel(cipherService: cipherService)
     }
     
+    @MainActor
     func encrypt(plainText: String) async throws {
         encryptedText = try await cipherService.cipher(plainText)
     }
