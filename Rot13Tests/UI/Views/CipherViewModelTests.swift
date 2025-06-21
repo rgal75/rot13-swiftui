@@ -16,7 +16,7 @@ struct CipherViewModelTests {
     @Suite("Real Instance")
     @MainActor
     struct RealInstanceTests {
-        @Test("When encryption starts, publishes that encryption is in progess")
+        @Test("when encryption starts, publishes that encryption is in progess")
         func testEncryptionInProgress() async throws {
             let viewModel = CipherViewModel.createNull(
                 configurableResponse: .success("Encrypted Text"),
@@ -32,7 +32,7 @@ struct CipherViewModelTests {
             _ = await encryptTask.result // Wait for completion to avoid test leaks
         }
         
-        @Test("When encryption succeeds, publishes the encrypted text and no progress")
+        @Test("when encryption succeeds, publishes the encrypted text and no progress")
         func testSuccessfulEncrypion() async throws {
             let viewModel = CipherViewModel.createNull(
                 configurableResponse: .success("Encrypted Text")
@@ -44,7 +44,7 @@ struct CipherViewModelTests {
             #expect(!viewModel.isEncrypting)
         }
         
-        @Test("When encryption fails, publishes the error and no progress")
+        @Test("when encryption fails, publishes the error and no progress")
         func testFailedEncrypion() async throws {
             let error = NSError(
                 domain: "TestError",
@@ -67,7 +67,7 @@ struct CipherViewModelTests {
     @Suite("Nulled Instance")
     @MainActor
     struct NulledInstanceTests {
-        @Test("Simulates successful encryption")
+        @Test("simulates successful encryption")
         func testSimulateSuccessfulEncryption() async throws {
             let viewModel = CipherViewModel.createNull(
                 configurableResponse: .success("Simulated Encrypted Text")
@@ -80,7 +80,7 @@ struct CipherViewModelTests {
             #expect(!viewModel.hasError)
         }
         
-        @Test("Simulates failed encryption")
+        @Test("simulates failed encryption")
         func testSimulateFailedEncryption() async throws {
             let error = NSError(domain: "TestDomain", code: 42, userInfo: [NSLocalizedDescriptionKey: "Simulated Failure"])
             let viewModel = CipherViewModel.createNull(configurableResponse: .failure(error))
@@ -93,7 +93,7 @@ struct CipherViewModelTests {
             #expect(viewModel.encryptedText == "")
         }
         
-        @Test("Simulates encryption delay")
+        @Test("simulates encryption delay")
         func testSimulateDelayedEncryption() async throws {
             let viewModel = CipherViewModel.createNull(
                 configurableResponse: .success("Delayed Encrypted Text"),

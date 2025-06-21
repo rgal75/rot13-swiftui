@@ -48,13 +48,15 @@ class StubURLSession: URLSessionProtocol {
 
 class CipherService: CipherServiceProtocol {
     private let session: URLSessionProtocol
+    private let port: UInt
     
-    private init(session: URLSessionProtocol) {
+    private init(session: URLSessionProtocol, port: UInt) {
         self.session = session
+        self.port = port
     }
     
     func cipher(_ text: String) async throws -> String {
-        let url = URL(string: "http://localhost:8081/rot13/transform")!
+        let url = URL(string: "http://localhost:\(port)/rot13/transform")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -72,8 +74,8 @@ class CipherService: CipherServiceProtocol {
         return transformed
     }
     
-    static func create() -> CipherService {
-        return CipherService(session: URLSession.shared)
+    static func create(port: UInt = 8081) -> CipherService {
+        return CipherService(session: URLSession.shared, port: port)
     }
     
     static func createNull(
@@ -89,7 +91,8 @@ class CipherService: CipherServiceProtocol {
             stubServiceResponse = .failure(error)
         }
         return CipherService(
-            session: StubURLSession(configurableResponse: stubServiceResponse, delay: delay)
+            session: StubURLSession(configurableResponse: stubServiceResponse, delay: delay),
+            port: 8081
         )
     }
 }
