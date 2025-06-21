@@ -19,12 +19,20 @@ enum ConfigurableResponse<R, E:Error> {
 // MARK: - Stub URLSession for Testing/Nullability
 class StubURLSession: URLSessionProtocol {
     let configurableResponse: ConfigurableResponse<(Data, URLResponse), Error>?
+    let delay: Duration
     
-    init(configurableResponse: ConfigurableResponse<(Data, URLResponse), Error>? = nil) {
+    init(
+        configurableResponse: ConfigurableResponse<(Data, URLResponse), Error>? = nil,
+        delay: Duration = .zero
+    ) {
         self.configurableResponse = configurableResponse
+        self.delay = delay
     }
     
     func data(for request: URLRequest) async throws -> (Data, URLResponse) {
+        if delay > .zero {
+            try? await Task.sleep(for: delay)
+        }
         if let configurableResponse = configurableResponse {
             switch configurableResponse {
             case .success(let value):
@@ -68,7 +76,10 @@ class CipherService: CipherServiceProtocol {
         return CipherService(session: URLSession.shared)
     }
     
-    static func createNull(stubResponse: ConfigurableResponse<String, Error> = .success("!!!")) -> CipherService {
+    static func createNull(
+        stubResponse: ConfigurableResponse<String, Error> = .success("!!!"),
+        delay: Duration = .zero
+    ) -> CipherService {
         var stubServiceResponse: ConfigurableResponse<(Data, URLResponse), Error>
         switch stubResponse {
         case .success(let text):
@@ -77,6 +88,8 @@ class CipherService: CipherServiceProtocol {
         case .failure(let error):
             stubServiceResponse = .failure(error)
         }
-        return CipherService(session: StubURLSession(configurableResponse: stubServiceResponse))
+        return CipherService(
+            session: StubURLSession(configurableResponse: stubServiceResponse, delay: delay)
+        )
     }
 }

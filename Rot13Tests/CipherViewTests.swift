@@ -18,6 +18,8 @@ struct CipherViewTests {
         let hostedCipherView = hostCipherView(with: CipherViewModel.createNull())
         defer { ViewHosting.expel() }
         try await hostedCipherView.inspection.inspect { cipherView in
+            let title = try cipherView.find(viewWithId: "text.title").text().string()
+            #expect(title == "Rot13 Cipher")
             // Check for the plain text input field
             _ = try cipherView.find(ViewType.TextField.self) { view in
                 try view.prompt().string() == "Plain Text"
