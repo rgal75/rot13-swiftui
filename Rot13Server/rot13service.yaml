@@ -1,0 +1,59 @@
+openapi: 3.0.0
+info:
+    title: Rot13 Service API
+    version: 1.0.0
+    description: API for transforming text using the Rot13 cipher.
+servers:
+    - url: http://localhost:3000
+paths:
+    /rot13/transform:
+        post:
+            summary: Transform text using Rot13
+            description: Takes a string and returns the Rot13 transformed version of it.
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                text:
+                                    type: string
+                                    description: The text to be transformed.
+                                    example: "Hello, world!"
+                            required:
+                                - text
+            responses:
+                "200":
+                    description: Successful transformation.
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    transformed:
+                                        type: string
+                                        description: The Rot13 transformed text.
+                                        example: "Uryyb, jbeyq!"
+                                required:
+                                    - transformed
+                "400":
+                    description: Invalid input. The request body must contain a 'text' property of type string.
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    error:
+                                        type: string
+                                        example: "Invalid input. Please provide a text string."
+                "500":
+                    description: Internal server error.
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    error:
+                                        type: string
+                                        example: "Internal server error"
